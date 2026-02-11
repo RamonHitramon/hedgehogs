@@ -75,7 +75,7 @@
   const btnCopy = document.getElementById('btn-copy-contract');
   const toast = document.getElementById('copy-toast');
 
-  const CONTRACT_PLACEHOLDER = '0x...';
+  const CONTRACT_PLACEHOLDER = '';
 
   if (btnCopy && contractEl && toast) {
     btnCopy.addEventListener('click', function () {

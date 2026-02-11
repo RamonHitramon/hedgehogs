@@ -17,7 +17,8 @@
     <span class="candle-flame"></span>
   </div>
 
-  <!-- Fog layers (parallax) -->
+  <!-- Forest + fog background (fog descends from top) -->
+  <div class="forest-bg" aria-hidden="true"></div>
   <div class="fog-container" aria-hidden="true">
     <div class="fog-layer fog-layer-1"></div>
     <div class="fog-layer fog-layer-2"></div>
@@ -75,12 +76,12 @@
       <div class="container">
         <h2 class="section-title">From the Trenches</h2>
         <div class="meme-grid" id="meme-grid">
-          <div class="meme-card-wrap"><img src="images/meme1.png" alt="HEDGEHOGS meme" class="meme-card" loading="lazy" /></div>
-          <div class="meme-card-wrap"><img src="images/meme2.png" alt="HEDGEHOGS meme" class="meme-card" loading="lazy" /></div>
-          <div class="meme-card-wrap"><img src="images/meme3.png" alt="HEDGEHOGS meme" class="meme-card" loading="lazy" /></div>
-          <div class="meme-card-wrap"><img src="images/meme4.png" alt="HEDGEHOGS meme" class="meme-card" loading="lazy" /></div>
-          <div class="meme-card-wrap"><img src="images/meme5.png" alt="HEDGEHOGS meme" class="meme-card" loading="lazy" /></div>
-          <div class="meme-card-wrap"><img src="images/meme6.png" alt="HEDGEHOGS meme" class="meme-card" loading="lazy" /></div>
+          <a href="images/meme1.png" class="meme-card-wrap" target="_blank" rel="noopener"><img src="images/meme1.png" alt="HEDGEHOGS meme" class="meme-card" loading="lazy" /></a>
+          <a href="images/meme2.png" class="meme-card-wrap" target="_blank" rel="noopener"><img src="images/meme2.png" alt="HEDGEHOGS meme" class="meme-card" loading="lazy" /></a>
+          <a href="images/meme3.png" class="meme-card-wrap" target="_blank" rel="noopener"><img src="images/meme3.png" alt="HEDGEHOGS meme" class="meme-card" loading="lazy" /></a>
+          <a href="images/meme4.png" class="meme-card-wrap" target="_blank" rel="noopener"><img src="images/meme4.png" alt="HEDGEHOGS meme" class="meme-card" loading="lazy" /></a>
+          <a href="images/meme5.png" class="meme-card-wrap" target="_blank" rel="noopener"><img src="images/meme5.png" alt="HEDGEHOGS meme" class="meme-card" loading="lazy" /></a>
+          <a href="images/meme6.png" class="meme-card-wrap" target="_blank" rel="noopener"><img src="images/meme6.png" alt="HEDGEHOGS meme" class="meme-card" loading="lazy" /></a>
         </div>
       </div>
     </section>
@@ -119,7 +120,7 @@
         <div class="contract-wrap">
           <label class="contract-label">Contract</label>
           <div class="contract-row">
-            <code class="contract-address" id="contract-address">0x...</code>
+            <code class="contract-address" id="contract-address">JBxcW1McScrBCBx8AqmW2M6w3DzDqayaAfwYc54ypump</code>
             <button type="button" class="btn-copy" id="btn-copy-contract" aria-label="Copy contract address">Copy</button>
           </div>
           <div id="copy-toast" class="copy-toast" aria-live="polite">Copied!</div>

@@ -4,13 +4,16 @@
    ============================================ */
 
 :root {
-  /* Dark mysterious palette */
-  --bg-deep: #0a0b12;
-  --bg-mid: #0f1120;
+  /* Forest + fog palette (from hedgehog images: deep blues, grays, muted greens) */
+  --bg-deep: #0a0e14;
+  --bg-forest: #0d1419;
+  --bg-mid: #121a22;
   --bg-card: #141728;
-  --fog-dark: rgba(15, 20, 45, 0.85);
-  --fog-mid: rgba(40, 45, 80, 0.4);
-  --fog-light: rgba(80, 90, 130, 0.25);
+  --forest-dark: #0f161c;
+  --forest-mid: #1a2430;
+  --fog-dark: rgba(25, 35, 50, 0.9);
+  --fog-mid: rgba(55, 65, 85, 0.5);
+  --fog-light: rgba(90, 105, 130, 0.35);
   --text: #e2e4ec;
   --text-muted: #8b8fa8;
   --accent: #7c6cf7;
@@ -44,6 +47,23 @@ body {
   background: var(--bg-deep);
   overflow-x: hidden;
   cursor: none;
+}
+
+/* ========== FOREST BACKGROUND (color scheme from images) ========== */
+.forest-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    /* Foggy sky top */
+    linear-gradient(180deg, rgba(15, 22, 35, 0.97) 0%, rgba(20, 30, 45, 0.9) 25%, transparent 50%),
+    /* Mist layer */
+    linear-gradient(180deg, transparent 20%, rgba(40, 55, 75, 0.4) 60%, rgba(25, 35, 48, 0.7) 100%),
+    /* Forest silhouette (dark shapes at bottom) */
+    linear-gradient(180deg, transparent 40%, var(--forest-mid) 70%, var(--forest-dark) 85%, #080c10 100%),
+    /* Base: deep blue-gray like dusk in fog */
+    linear-gradient(180deg, #0f1620 0%, #0d1419 30%, #0a0e12 70%, #06090c 100%);
 }
 
 /* Fallback: show default cursor on touch devices */
@@ -125,75 +145,80 @@ body.no-custom-cursor .cursor-candle {
   100% { transform: translateX(-50%) scale(1.05, 0.95) scaleY(1.1); opacity: 0.95; }
 }
 
-/* ========== FOG LAYERS (parallax) ========== */
+/* ========== FOG — опускается сверху на сайт ========== */
 .fog-container {
   position: fixed;
   inset: 0;
-  z-index: 0;
+  z-index: 1;
   overflow: hidden;
   pointer-events: none;
 }
 
 .fog-layer {
   position: absolute;
-  inset: -20%;
+  left: -10%;
+  right: -10%;
+  height: 120%;
   background-repeat: repeat-x;
-  background-size: 200% 100%;
-  animation: fog-drift 60s linear infinite;
+  background-size: 100% 100%;
+  animation: fog-descend 25s linear infinite;
 }
 
+/* Туман сверху опускается вниз */
 .fog-layer-1 {
+  top: -20%;
   background: linear-gradient(
-    90deg,
-    transparent 0%,
-    var(--fog-mid) 20%,
-    var(--fog-light) 40%,
-    var(--fog-mid) 60%,
-    var(--fog-dark) 80%,
-    transparent 100%
+    180deg,
+    var(--fog-mid) 0%,
+    var(--fog-light) 15%,
+    var(--fog-dark) 35%,
+    transparent 60%
   );
-  animation-duration: 80s;
-  animation-direction: reverse;
-  opacity: 0.6;
+  animation-duration: 30s;
+  animation-delay: 0s;
+  opacity: 0.7;
 }
 
 .fog-layer-2 {
+  top: -30%;
   background: linear-gradient(
-    90deg,
-    var(--fog-dark) 0%,
-    transparent 25%,
-    var(--fog-light) 50%,
-    transparent 75%,
-    var(--fog-mid) 100%
+    180deg,
+    var(--fog-light) 0%,
+    var(--fog-mid) 25%,
+    transparent 55%
   );
-  animation-duration: 100s;
+  animation-duration: 40s;
+  animation-delay: -10s;
   opacity: 0.5;
 }
 
 .fog-layer-3 {
-  background: radial-gradient(
-    ellipse 120% 80% at 50% 50%,
-    var(--fog-light) 0%,
+  top: -15%;
+  background: linear-gradient(
+    180deg,
+    rgba(60, 75, 100, 0.4) 0%,
+    var(--fog-light) 20%,
     transparent 50%
   );
-  animation: fog-pulse 20s ease-in-out infinite;
-  opacity: 0.4;
+  animation-duration: 35s;
+  animation-delay: -5s;
+  opacity: 0.45;
 }
 
-@keyframes fog-drift {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+@keyframes fog-descend {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
 }
 
 @keyframes fog-pulse {
-  0%, 100% { opacity: 0.3; transform: scale(1); }
-  50% { opacity: 0.5; transform: scale(1.05); }
+  0%, 100% { opacity: 0.3; transform: translateY(-100%); }
+  50% { opacity: 0.5; transform: translateY(-50%); }
 }
 
 /* ========== PAGE CONTENT (above fog) ========== */
 .page {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   min-height: 100vh;
 }
 
@@ -408,10 +433,18 @@ body.no-custom-cursor .cursor-candle {
 
 .meme-card-wrap {
   position: relative;
+  display: block;
   border-radius: var(--radius);
   overflow: hidden;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
   transition: transform 0.4s ease, box-shadow 0.4s ease;
+  text-decoration: none;
+  color: inherit;
+}
+
+a.meme-card-wrap:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
 }
 
 /* Subtle fog overlay on each meme (always visible) */
