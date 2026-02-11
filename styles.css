@@ -22,8 +22,8 @@
   --flame-bright: #ffdd88;
   --border: rgba(124, 108, 247, 0.2);
   --shadow-glow: 0 0 40px rgba(124, 108, 247, 0.3);
-  --font-head: 'Montserrat', sans-serif;
-  --font-body: 'Inter', sans-serif;
+  --font-head: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'Sora', system-ui, sans-serif;
   --radius: 12px;
   --transition: 0.3s ease;
 }
@@ -44,26 +44,23 @@ body {
   font-family: var(--font-body);
   font-size: 16px;
   color: var(--text);
-  background: var(--bg-deep);
+  /* Fallback, если фото не загрузится */
+  background: #0a0e12;
   overflow-x: hidden;
   cursor: none;
 }
 
-/* ========== FOREST BACKGROUND (color scheme from images) ========== */
+/* ========== FOREST BACKGROUND — фото леса с туманом ========== */
 .forest-bg {
   position: fixed;
   inset: 0;
   z-index: 0;
   pointer-events: none;
   background:
-    /* Foggy sky top */
-    linear-gradient(180deg, rgba(15, 22, 35, 0.97) 0%, rgba(20, 30, 45, 0.9) 25%, transparent 50%),
-    /* Mist layer */
-    linear-gradient(180deg, transparent 20%, rgba(40, 55, 75, 0.4) 60%, rgba(25, 35, 48, 0.7) 100%),
-    /* Forest silhouette (dark shapes at bottom) */
-    linear-gradient(180deg, transparent 40%, var(--forest-mid) 70%, var(--forest-dark) 85%, #080c10 100%),
-    /* Base: deep blue-gray like dusk in fog */
-    linear-gradient(180deg, #0f1620 0%, #0d1419 30%, #0a0e12 70%, #06090c 100%);
+    /* Затемнение для читаемости текста */
+    linear-gradient(180deg, rgba(5, 10, 12, 0.75) 0%, rgba(8, 14, 18, 0.5) 40%, rgba(10, 18, 22, 0.6) 100%),
+    /* Фото леса: cover, по центру */
+    url("images/forest-fog-bg.png") no-repeat center center / cover;
 }
 
 /* Fallback: show default cursor on touch devices */
@@ -248,8 +245,9 @@ body.no-custom-cursor .cursor-candle {
 
 .section-title {
   font-family: var(--font-head);
-  font-weight: 800;
-  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 700;
+  font-size: clamp(1.85rem, 4vw, 2.75rem);
+  letter-spacing: 0.02em;
   text-align: center;
   margin: 0 0 2rem;
   color: var(--text);
@@ -293,9 +291,9 @@ body.no-custom-cursor .cursor-candle {
 
 .hero-title {
   font-family: var(--font-head);
-  font-weight: 900;
-  font-size: clamp(2.5rem, 8vw, 4rem);
-  letter-spacing: 0.02em;
+  font-weight: 700;
+  font-size: clamp(2.75rem, 9vw, 4.25rem);
+  letter-spacing: 0.04em;
   margin: 0 0 0.5rem;
   color: var(--text);
   text-shadow: 0 0 40px rgba(124, 108, 247, 0.5);
